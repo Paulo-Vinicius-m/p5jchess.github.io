@@ -1,4 +1,4 @@
-import {INPUT_EVENT_TYPE, COLOR, Chessboard, MARKER_TYPE} from "/p5jchess.github.io/libraries/cm-chessboard-master/src/cm-chessboard/Chessboard.js"
+import {INPUT_EVENT_TYPE, COLOR, Chessboard, MARKER_TYPE} from "/p5jchess.github.io/libraries/cm-chessboard-master/cm-chessboard/Chessboard.js"
 import makemove from "/p5jchess.github.io/engine.js"
 import Eval from "/p5jchess.github.io/evaluation_function.js"
 import {Chess} from '/p5jchess.github.io/libraries/chess/chess.js'
