@@ -1,7 +1,7 @@
-import {INPUT_EVENT_TYPE, COLOR, Chessboard, MARKER_TYPE} from "libraries/cm-chessboard-master/src/cm-chessboard/Chessboard.js"
+import {INPUT_EVENT_TYPE, COLOR, Chessboard, MARKER_TYPE} from "/p5jchess.github.io/libraries/cm-chessboard-master/src/cm-chessboard/Chessboard.js"
 import makemove from "engine.js"
 import Eval from "evaluation_function.js"
-import {Chess} from 'libraries/chess/chess.js'
+import {Chess} from '/p5jchess.github.io/libraries/chess/chess.js'
 
 // Board => representação gráfica do tabuleiro e input handler
 // chess => classe que armazena a posição, lida com as regras do jogo, gera os lances que são possíveis e etc.
