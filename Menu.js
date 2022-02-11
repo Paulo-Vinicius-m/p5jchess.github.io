@@ -164,13 +164,13 @@ function mousePressed() {
      // Hitbox do botão jogar de brancas
      if(mouseX>603 && mouseX<673 && mouseY>300 && mouseY<370) {
        som.play()
-       window.location.href = 'http://127.0.0.1:5500/jogo_main.html?cor=white'
+       window.location.href = 'https://pv-lindo.github.io/p5jchess.github.io/jogo_main.html?cor=white'
      }
 
      // Hitbox do botão jogar de pretas
      if(mouseX>693 && mouseX<763 && mouseY>300 && mouseY<370) {
        som.play()
-       window.location.href = 'http://127.0.0.1:5500/jogo_main.html?cor=black';
+       window.location.href = 'https://pv-lindo.github.io/p5jchess.github.io/jogo_main.html?cor=black';
      }
   }
 
