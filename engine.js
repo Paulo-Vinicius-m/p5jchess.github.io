@@ -1,4 +1,4 @@
-import Eval from "evaluation_function.js"
+import Eval from "/p5jchess.github.io/evaluation_function.js"
 
 export default function makemove (board, game){
     var possibleMoves = moveordering(game)
