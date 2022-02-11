@@ -4,8 +4,8 @@
  * License: MIT, see file 'LICENSE'
  */
 
-import {SQUARE_COORDINATES, ChessboardView} from "/cm-chessboard/ChessboardView.js"
-import {ChessboardState} from "/cm-chessboard/ChessboardState.js"
+import {SQUARE_COORDINATES, ChessboardView} from "/p5jchess.github.io/libraries/cm-chessboard-master/cm-chessboard/ChessboardView.js"
+import {ChessboardState} from "/p5jchess.github.io/libraries/cm-chessboard-master/cm-chessboard/ChessboardState.js"
 
 export const COLOR = {
     white: "w",
