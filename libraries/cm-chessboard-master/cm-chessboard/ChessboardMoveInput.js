@@ -4,7 +4,7 @@
  * License: MIT, see file 'LICENSE'
  */
 
-import {SQUARE_COORDINATES, Svg} from "./ChessboardView.js"
+import {SQUARE_COORDINATES, Svg} from "/cm-chessboard/ChessboardView.js"
 
 const STATE = {
     waitForInputStart: 0,
