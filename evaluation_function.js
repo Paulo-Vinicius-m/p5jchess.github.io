@@ -49,7 +49,7 @@ export default function Eval (color, game) {
         
         // Dá uma valorizada no par de bispos ;) e vê se tem bispos ruins ou bons
         if (meupar == 2){
-            evaluation = evaluation + 108 - casadopeao.length
+            evaluation = evaluation + 100 - casadopeao.length
         }
         else {
             if (meupar == 1){
@@ -60,6 +60,13 @@ export default function Eval (color, game) {
         }
         if (paroponente == 2){
             evaluation = evaluation - 100
+        }
+        else {
+            if (paroponente == 1){
+                for (var k=0; k<casadopeao.length; k++){
+                    if (casadopeao[k] == casadobispo){evaluation++}
+                }
+            }
         }
 
         // Valoriza a mobilidade das peças
