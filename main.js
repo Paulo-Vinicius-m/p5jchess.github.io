@@ -33,6 +33,7 @@ if (cor[0] != chess.turn()) {
 
 // Configurações da ilustração do tabuleiro: mudar o ponto de vista de acordo com as peças do jogador
 if (cor[0] =='w'){ 
+    chess.header('white', 'engine', 'black', 'player')
     config = {
     responsive: true,
     position: chess.fen(),
@@ -43,6 +44,7 @@ if (cor[0] =='w'){
 }
 
 else{ 
+    chess.header('white', 'player', 'black', 'engine')
     cor = 'black'
     config = {
     responsive: true,
@@ -66,7 +68,7 @@ function inputHandler(event) {
     // Verifica se o jogo ja encerrou. Caso tenha acabado, mostrar no console o histórico da partida
     if(chess.game_over()){
 
-        if(chess.in_check()){
+        if(chess.in_checkmate()){
             alert ('Xeque-mate!')
         }
         else{
@@ -112,7 +114,7 @@ function inputHandler(event) {
     if (cor[0] != chess.turn()) {
 
         event.chessboard.removeMarkers(undefined, MARKER_TYPE.square)
-        if (chess.moves()) {
+        if (chess.game_over()) {
             setTimeout(() => {
             makemove(event.chessboard, chess)
             console.log('eval: ' + Eval(cor[0], chess)/100)}, 50)
