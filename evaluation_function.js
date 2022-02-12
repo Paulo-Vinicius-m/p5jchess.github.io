@@ -6,6 +6,7 @@ const pawn = 100
 var meupar = 0
 var paroponente = 0
 var casadobispo
+var casadobispoadversario
 var casadopeao = []
 var casadopeaoadversario = []
 var cor
@@ -40,7 +41,7 @@ export default function Eval (color, game) {
                     if (game.board()[i][j].color != color) {
                         if (game.board()[i][j].type == 'q') { evaluation = evaluation - queen; }
                         if (game.board()[i][j].type == 'n') { evaluation = evaluation - knight; }
-                        if (game.board()[i][j].type == 'b') { evaluation = evaluation - bish; paroponente++}
+                        if (game.board()[i][j].type == 'b') { evaluation = evaluation - bish; paroponente++; casadobispoadversario = ((i+j)%2)===0}
                         if (game.board()[i][j].type == 'r') { evaluation = evaluation - rook; }
                         if (game.board()[i][j].type == 'p') { evaluation = evaluation - pawn; cor = ((i+j)%2)===0; casadopeaoadversario.push(cor)}
                     }
@@ -67,7 +68,7 @@ export default function Eval (color, game) {
         else {
             if (paroponente == 1){
                 for (var k=0; k<casadopeao.length; k++){
-                    if (casadopeaoadversario[k] == casadobispo){
+                    if (casadopeaoadversario[k] == casadobispoadversario){
                         evaluation++
                     }
                 }
