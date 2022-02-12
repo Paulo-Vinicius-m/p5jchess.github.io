@@ -1960,6 +1960,36 @@ var Chess = function (fen) {
         return { fen: fen, comment: comment }
       })
     },
+    
+    fast_move: function(move){
+
+      // a faster way to make moves (without SAN and verbose verification)
+      var move_obj = null
+
+      if (typeof move === 'string') {
+        move_obj = move_from_san(move, sloppy)
+      } else if (typeof move === 'object') {
+        var moves = generate_moves()
+
+        /* convert the pretty move object to an ugly move object */
+        for (var i = 0, len = moves.length; i < len; i++) {
+          if (
+            move.from === algebraic(moves[i].from) &&
+            move.to === algebraic(moves[i].to) &&
+            (!('promotion' in moves[i]) ||
+              move.promotion === moves[i].promotion)
+          ) {
+            move_obj = moves[i]
+            break
+          }
+        }
+      }
+
+
+      make_move(move_obj)
+
+      return true
+    },
   }
 }
 
@@ -1972,5 +2002,4 @@ if (typeof define !== 'undefined')
     return Chess
   })
 
-  var testee = 'oi'
 export {Chess}
