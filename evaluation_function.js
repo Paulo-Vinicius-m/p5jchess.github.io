@@ -7,6 +7,7 @@ var meupar = 0
 var paroponente = 0
 var casadobispo
 var casadopeao = []
+var casadopeaoadversario = []
 var cor
 
 // Função para avaliar funções "estáticas"
@@ -41,7 +42,7 @@ export default function Eval (color, game) {
                         if (game.board()[i][j].type == 'n') { evaluation = evaluation - knight; }
                         if (game.board()[i][j].type == 'b') { evaluation = evaluation - bish; paroponente++}
                         if (game.board()[i][j].type == 'r') { evaluation = evaluation - rook; }
-                        if (game.board()[i][j].type == 'p') { evaluation = evaluation - pawn; }
+                        if (game.board()[i][j].type == 'p') { evaluation = evaluation - pawn; cor = ((i+j)%2)===0; casadopeaoadversario.push(cor)}
                     }
                 }
             }
@@ -54,17 +55,23 @@ export default function Eval (color, game) {
         else {
             if (meupar == 1){
                 for (var k=0; k<casadopeao.length; k++){
-                    if (casadopeao[k] == casadobispo){evaluation--}
+                    if (casadopeao[k] == casadobispo){
+                        evaluation--
+                        k = 8
+                    }
                 }
             }
         }
         if (paroponente == 2){
-            evaluation = evaluation - 100
+            evaluation = evaluation - 100 + casadopeaoadversario.length
         }
         else {
             if (paroponente == 1){
                 for (var k=0; k<casadopeao.length; k++){
-                    if (casadopeao[k] == casadobispo){evaluation++}
+                    if (casadopeaoadversario[k] == casadobispo){
+                        evaluation++
+                        k = 8
+                    }
                 }
             }
         }
