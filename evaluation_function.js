@@ -57,7 +57,6 @@ export default function Eval (color, game) {
                 for (var k=0; k<casadopeao.length; k++){
                     if (casadopeao[k] == casadobispo){
                         evaluation--
-                        k = 8
                     }
                 }
             }
@@ -70,7 +69,6 @@ export default function Eval (color, game) {
                 for (var k=0; k<casadopeao.length; k++){
                     if (casadopeaoadversario[k] == casadobispo){
                         evaluation++
-                        k = 8
                     }
                 }
             }
