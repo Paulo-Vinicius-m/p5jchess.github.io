@@ -16,7 +16,7 @@ export default function Eval (color, game) {
 
     // Verifica se o jogo acabou e retorna a avaliação da posição
     if (game.moves().length ===0){
-        if (game.in_check()) {
+        if (game.in_checkmate()) {
             return (-9999999);
         }
         else {
