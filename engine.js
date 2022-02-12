@@ -24,7 +24,7 @@ export default function makemove (board, game){
 
     // Faz o lance que ele avaliou como melhor e atualiza a ilustração do tabuleiro
     game.fast_move(bestmove)
-    game.set_comment(alpha)
+    game.set_comment(alpha.toString())
     if (board){
         board.setPosition(game.fen())
     }
