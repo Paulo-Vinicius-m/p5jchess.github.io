@@ -91,7 +91,7 @@ export class ChessboardView {
             wrapper.id = wrapperId
             document.body.appendChild(wrapper)
             const xhr = new XMLHttpRequest()
-            xhr.open("GET", "./assets/images/chessboard-sprite-staunty.svg", true)
+            xhr.open("GET", "/p5jchess.github.io/libraries/cm-chessboard-master/assets/images/chessboard-sprite-staunty.svg", true)
             xhr.onload = function () {
                 wrapper.insertAdjacentHTML('afterbegin', xhr.response)
             }
