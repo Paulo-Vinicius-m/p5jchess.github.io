@@ -9,7 +9,7 @@ export default function makemove (board, game){
 
     // Calcula lance por lance usando alpha-beta pruning
     for (var j = 0; j < possibleMoves.length; j++){
-        game.move(possibleMoves[j])
+        game.fast_move(possibleMoves[j])
         aval = -search(game, 1, -9999999, -alpha)
         game.undo()
         console.log('n: '+j+' > '+possibleMoves[j].from +' '+possibleMoves[j].to)
@@ -23,7 +23,8 @@ export default function makemove (board, game){
     }
 
     // Faz o lance que ele avaliou como melhor e atualiza a ilustração do tabuleiro
-    game.move(bestmove)
+    game.fast_move(bestmove)
+    game.set_comment(alpha)
     if (board){
         board.setPosition(game.fen())
     }
@@ -34,7 +35,7 @@ export default function makemove (board, game){
 
     // Detecta se a partida acabou
     if (game.game_over()){
-        if (game.in_check()){ alert('Xeque-mate!')}
+        if (game.in_checkmate()){ alert('Xeque-mate!')}
         else {alert('Empate!')}
         return console.log(game.pgn())
     }
@@ -53,7 +54,7 @@ function search(game, depth, alpha, beta){
     
     // Verifica se a partida acabou
     if (movelist.length === 0){
-        if (game.in_check()) {
+        if (game.in_checkmate()) {
             return -9999999;
         }
         else {
@@ -63,7 +64,7 @@ function search(game, depth, alpha, beta){
 
     // Chama de novo a função de busca para avaliar quão bons são as respostas do adversário
     for (var i = 0; i < movelist.length; i++){
-        game.move(movelist[i])
+        game.fast_move(movelist[i])
         var temp = -search (game, depth - 1, -beta, -alpha)
         game.undo()
         if (temp >= beta) {
@@ -86,7 +87,7 @@ function search(game, depth, alpha, beta){
     var movesordered = []
 
     for (var i = 0; i < movelist.length; i++){
-        game.move(movelist[i])
+        game.fast_move(movelist[i])
         if (game.in_check()){
             movesordered.push(movelist[i])
             movelist[i] = null
@@ -147,7 +148,7 @@ function dinamicEval (game, alpha, beta){
     const movelist = game.moves({verbose:true})
     for (var i = 0; i < movelist.length; i++){
         if (movelist[i].flags.includes('c')){
-            game.move(movelist[i])
+            game.fast_move(movelist[i])
             aval = -dinamicEval(game, -beta, -alpha)
             game.undo()
             if (aval >= beta) {
@@ -161,47 +162,3 @@ function dinamicEval (game, alpha, beta){
 
     return alpha
 }
-
-// Ainda estou trabalhando nisso...
-/*export default function iterativedeepening(board, game, depth){
-    var possibleMoves = moveordering(game)
-    var bestmove
-    var bestmoveposition
-    var t1 = new Date()
-
-    for (var currentdepth = 0; currentdepth<depth; currentdepth++){
-        if (bestmove){
-            possibleMoves[bestmoveposition] = possibleMoves[0]
-            possibleMoves[0] = bestmove
-        }
-        var alpha = -99999999
-        var aval
-
-        for (var j = 0; j < possibleMoves.length; j++){
-
-            game.move(possibleMoves[j])
-            aval = -search(game, 1, -9999999, -alpha)
-            game.undo()
-            console.log('n: '+j+' > '+possibleMoves[j].from +' '+possibleMoves[j].to)
-            if (aval > alpha){
-                alpha = aval
-                bestmove = possibleMoves[j]
-                bestmoveposition = j
-            }
-            if (possibleMoves[j].flags.includes('c')) {
-                console.log(possibleMoves[j])
-            }
-        }
-    }
-    game.move(bestmove)
-    if (board){
-        board.setPosition(game.fen())
-    }
-    var t2 = new Date() - t1
-    console.log('search: ' + alpha/100 + '\ntime: ' + t2/1000)
-    if (game.game_over()){
-        if (game.in_check()){ alert('Xeque-mate!')}
-        else {alert('Empate!')}
-        return console.log(game.pgn())
-    }
-}*/
