@@ -9,9 +9,12 @@ export default function Eval (color, game) {
     var peaoadversario = []
     var pieces = 0
     var evaluation = 0
+    var myking
+    var enemyking
+    var moves = game.moves().length
 
     // Verifica se o jogo acabou e retorna a avaliação da posição
-    if (game.moves().length === 0){
+    if (moves === 0){
         if (game.in_checkmate()) {
             return (-9999999);
         }
@@ -26,18 +29,22 @@ export default function Eval (color, game) {
                 if (game.board()[i][j] == null) { }
                 else {
                     if (game.board()[i][j].color == color) {
-                        if (game.board()[i][j].type == 'q') { evaluation = evaluation + 900; pieces++}
-                        if (game.board()[i][j].type == 'n') { evaluation = evaluation + 300; pieces++}
-                        if (game.board()[i][j].type == 'b') { evaluation = evaluation + 315; meupar++; casadobispo = ((i+j)%2); pieces++}
-                        if (game.board()[i][j].type == 'r') { evaluation = evaluation + 500; pieces++}
-                        if (game.board()[i][j].type == 'p') { evaluation = evaluation + 100; peao.push(((i+j)%2)); pieces++}
+                        if (game.board()[i][j] == null) {}
+                        else if (game.board()[i][j].type == 'p') { evaluation = evaluation + 100; peao.push(((i+j)%2)); pieces++}
+                        else if (game.board()[i][j].type == 'r') { evaluation = evaluation + 500; pieces++}
+                        else if (game.board()[i][j].type == 'n') { evaluation = evaluation + 300; pieces++}
+                        else if (game.board()[i][j].type == 'b') { evaluation = evaluation + 315; meupar++; casadobispo = ((i+j)%2); pieces++}
+                        else if (game.board()[i][j].type == 'k') { myking = (j-4)**2}
+                        else if (game.board()[i][j].type == 'q') { evaluation = evaluation + 900; pieces++}
                     }
                     if (game.board()[i][j].color != color) {
-                        if (game.board()[i][j].type == 'q') { evaluation = evaluation - 900; pieces++}
-                        if (game.board()[i][j].type == 'n') { evaluation = evaluation - 300; pieces++}
-                        if (game.board()[i][j].type == 'b') { evaluation = evaluation - 315; paroponente++; casadobispoadversario = ((i+j)%2); pieces++}
-                        if (game.board()[i][j].type == 'r') { evaluation = evaluation - 500; pieces++}
-                        if (game.board()[i][j].type == 'p') { evaluation = evaluation - 100; peaoadversario.push(((i+j)%2)); pieces++}
+                        if (game.board()[i][j] == null) {}
+                        else if (game.board()[i][j].type == 'p') { evaluation = evaluation - 100; peaoadversario.push(((i+j)%2)); pieces++}
+                        else if (game.board()[i][j].type == 'r') { evaluation = evaluation - 500; pieces++}
+                        else if (game.board()[i][j].type == 'n') { evaluation = evaluation - 300; pieces++}
+                        else if (game.board()[i][j].type == 'b') { evaluation = evaluation - 315; paroponente++; casadobispoadversario = ((i+j)%2); pieces++}
+                        else if (game.board()[i][j].type == 'k') { enemyking = (j-4)**2}
+                        else if (game.board()[i][j].type == 'q') { evaluation = evaluation - 900; pieces++}
                     }
                 }
             }
@@ -68,8 +75,13 @@ export default function Eval (color, game) {
                 }
             }
         }
+        
+        // Incentiva a proteger o rei e a usá-lo nos finais
+        if (pieces > 11) {evaluation = evaluation + myking - enemyking}
+        else {evaluation = evaluation - myking + enemyking}
+        
         // Valoriza a mobilidade das peças mas incentiva as trocas pra evitar posições muito complexas
-        evaluation = (evaluation + game.moves().length) - pieces
+        evaluation = evaluation + moves - pieces
         
         return evaluation
     } 
