@@ -33,7 +33,7 @@ if (cor[0] != chess.turn()) {
 
 // Configurações da ilustração do tabuleiro: mudar o ponto de vista de acordo com as peças do jogador
 if (cor[0] =='w'){ 
-    chess.header('white', 'engine', 'black', 'player')
+    chess.header('white', 'player', 'black', 'engine')
     config = {
     responsive: true,
     position: chess.fen(),
@@ -43,8 +43,8 @@ if (cor[0] =='w'){
     }
 }
 
-else{ 
-    chess.header('white', 'player', 'black', 'engine')
+else{
+    chess.header('white', 'engine', 'black', 'player')
     cor = 'black'
     config = {
     responsive: true,
