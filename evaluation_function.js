@@ -11,15 +11,14 @@ export default function Eval (color, game) {
     var evaluation = 0
     var myking
     var enemyking
-    var moves = game.moves().length
 
     // Verifica se o jogo acabou e retorna a avaliação da posição
-    if (moves === 0){
-        if (game.in_checkmate()) {
-            return (-9999999);
+    if (game.game_over()){
+        if (game.in_draw()) {
+            return (0);
         }
         else {
-                return 0;
+                return -9999999;
         }
     }
     // Conta as peças da engine e do jogador pra ver quem tem mais meterial
@@ -81,7 +80,7 @@ export default function Eval (color, game) {
         else {evaluation = evaluation - myking + enemyking}
         
         // Valoriza a mobilidade das peças mas incentiva as trocas pra evitar posições muito complexas
-        evaluation = evaluation + moves - pieces
+        evaluation = evaluation + game.moves().length - pieces
         
         return evaluation
     } 
