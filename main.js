@@ -116,8 +116,7 @@ function inputHandler(event) {
         event.chessboard.removeMarkers(undefined, MARKER_TYPE.square)
         if (!chess.game_over()) {
             setTimeout(() => {
-            makemove(event.chessboard, chess)
-            console.log('eval: ' + Eval(cor[0], chess)/100)}, 50)
+            makemove(event.chessboard, chess), 50)
         }
     }
     
