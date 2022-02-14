@@ -53,12 +53,12 @@ function search(game, depth, alpha, beta){
     const movelist = moveordering(game)
     
     // Verifica se a partida acabou
-    if (movelist.length === 0){
-        if (game.in_checkmate()) {
-            return -9999999;
+    if (game.game_over()){
+        if (game.in_draw()) {
+            return 0;
         }
         else {
-                return 0;
+                return -9999999;
             }
     }
 
@@ -139,7 +139,7 @@ function dinamicEval (game, alpha, beta){
             game.fast_move(movelist[i])
             aval = -dinamicEval(game, -beta, -alpha)
             game.undo()
-            if (aval + 5 >= beta) {
+            if (aval >= beta) {
                 return beta
             }
             if (aval > alpha) {
