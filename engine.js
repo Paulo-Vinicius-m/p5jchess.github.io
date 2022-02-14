@@ -107,19 +107,7 @@ function search(game, depth, alpha, beta){
         }
     }
     for (var i = 0; i < movelist.length; i++){
-        if (movelist[i] && movelist[i].flags.includes('k')){
-            movesordered.push(movelist[i])
-            movelist[i] = null
-        }
-    }
-    for (var i = 0; i < movelist.length; i++){
-        if (movelist[i] && movelist[i].flags.includes('q')){
-            movesordered.push(movelist[i])
-            movelist[i] = null
-        }
-    }
-    for (var i = 0; i < movelist.length; i++){
-        if (movelist[i] && movelist[i].flags.includes('e')){
+        if (movelist[i] && (movelist[i].flags.includes('k') || movelist[i].flags.includes('q') || movelist[i].flags.includes('e'))){
             movesordered.push(movelist[i])
             movelist[i] = null
         }
@@ -151,7 +139,7 @@ function dinamicEval (game, alpha, beta){
             game.fast_move(movelist[i])
             aval = -dinamicEval(game, -beta, -alpha)
             game.undo()
-            if (aval >= beta) {
+            if (aval + 5 >= beta) {
                 return beta
             }
             if (aval > alpha) {
