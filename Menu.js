@@ -60,6 +60,10 @@ function draw() {
 
     // Função que cria o botão de voltar para o menu
     voltar()
+    
+    // Texto
+    textSize(25)
+    text('Escolha suas peças:', 683, 250)
 
     // Botões que direcionam o usuário para o html do tabuleiro
     rect(603, 300, 70, 70, 10);
