@@ -65,19 +65,6 @@ function inputHandler(event) {
     event.chessboard.removeMarkers(undefined, MARKER_TYPE.dot)
     event.chessboard.removeMarkers(undefined, MARKER_TYPE.square)
 
-    // Verifica se o jogo ja encerrou. Caso tenha acabado, mostrar no console o histórico da partida
-    if(chess.game_over()){
-
-        if(chess.in_checkmate()){
-            alert ('Xeque-mate!')
-        }
-        else{
-            alert ('Empate!')
-        }
-
-        return console.log(chess.pgn())
-    }
-
     // Detecta se a interação é o início de uma jogada
     if (event.type === INPUT_EVENT_TYPE.moveStart) {
         const moves = chess.moves({square: event.square, verbose: true});
@@ -108,6 +95,18 @@ function inputHandler(event) {
         if (!result) {
             console.warn("invalid move", move)
         }
+    }
+    
+    // Verifica se o jogo ja encerrou. Caso tenha acabado, mostrar no console o histórico da partida
+    if(chess.game_over()){
+
+        if(chess.in_checkmate()){
+            alert ('Xeque-mate!')
+        }
+        else{
+            alert ('Empate!')
+        }
+        return console.log(chess.pgn())
     }
 
     // Verifica se o jogo acabou e, caso não, a engine faz seu lance
