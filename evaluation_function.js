@@ -29,7 +29,7 @@ export default function Eval (color, game) {
                 else {
                     if (game.board()[i][j].color == color) {
                         if (game.board()[i][j] == null) {}
-                        else if (game.board()[i][j].type == 'p') { evaluation = evaluation + 100; peao.push(((i+j)%2)); pieces++}
+                        else if (game.board()[i][j].type == 'p') { evaluation = evaluation + 100; peao.push(((i+j)%2))}
                         else if (game.board()[i][j].type == 'r') { evaluation = evaluation + 500; pieces++}
                         else if (game.board()[i][j].type == 'n') { evaluation = evaluation + 300; pieces++}
                         else if (game.board()[i][j].type == 'b') { evaluation = evaluation + 315; meupar++; casadobispo = ((i+j)%2); pieces++}
@@ -38,7 +38,7 @@ export default function Eval (color, game) {
                     }
                     if (game.board()[i][j].color != color) {
                         if (game.board()[i][j] == null) {}
-                        else if (game.board()[i][j].type == 'p') { evaluation = evaluation - 100; peaoadversario.push(((i+j)%2)); pieces++}
+                        else if (game.board()[i][j].type == 'p') { evaluation = evaluation - 100; peaoadversario.push(((i+j)%2))}
                         else if (game.board()[i][j].type == 'r') { evaluation = evaluation - 500; pieces++}
                         else if (game.board()[i][j].type == 'n') { evaluation = evaluation - 300; pieces++}
                         else if (game.board()[i][j].type == 'b') { evaluation = evaluation - 315; paroponente++; casadobispoadversario = ((i+j)%2); pieces++}
@@ -76,7 +76,7 @@ export default function Eval (color, game) {
         }
         
         // Incentiva a proteger o rei e a usá-lo nos finais
-        if (pieces > 11) {evaluation = evaluation + myking - enemyking}
+        if (pieces > 7) {evaluation = evaluation + myking - enemyking}
         else {evaluation = evaluation - myking + enemyking}
         
         // Valoriza a mobilidade das peças mas incentiva as trocas pra evitar posições muito complexas
