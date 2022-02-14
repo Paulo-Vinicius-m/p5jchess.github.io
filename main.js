@@ -116,7 +116,7 @@ function inputHandler(event) {
         event.chessboard.removeMarkers(undefined, MARKER_TYPE.square)
         if (!chess.game_over()) {
             setTimeout(() => {
-            makemove(event.chessboard, chess), 50}
+            makemove(event.chessboard, chess), 50})
     }
     
     event.chessboard.enableMoveInput(inputHandler, COLOR.cor)
