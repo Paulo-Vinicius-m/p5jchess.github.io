@@ -80,7 +80,7 @@ export default function Eval (color, game) {
         else {evaluation = evaluation - myking + enemyking}
         
         // Valoriza a mobilidade das peças mas incentiva as trocas pra evitar posições muito complexas
-        evaluation = evaluation + game.moves().length - pieces
+        evaluation = evaluation + game.moves().length - pieces - pieces
         
         return evaluation
     } 
