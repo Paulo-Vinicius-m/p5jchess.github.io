@@ -12,7 +12,7 @@ var cor
 var config
 
 // Criação da representação do jogo
-const chess = new Chess('3qkbnr/P2ppppp/8/8/8/8/1PPPPPPP/RNBQKBNR w KQk - 0 1)
+const chess = new Chess('3qkbnr/P2ppppp/8/8/8/8/1PPPPPPP/RNBQKBNR w KQk - 0 1')
 
 // Pega o valor da URL (ver o HTML) que diz com qual cor o usuário irá jogar
 if (get){
