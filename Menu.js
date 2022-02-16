@@ -124,7 +124,7 @@ function draw() {
     // Breve introdução
     textSize(20)
     text('Orivaldo Santana, Professor de programação \nna Escola de Ciências & Tecnologia da UFRN.', 522, 303)
-    text('Paulo Vinícius, bacharelando de Ciências & Tecnologia\nna UFRN e enxadrista amador.', 822, 470)
+    text('Paulo Vinícius, bacharelando de Ciências & Tecnologia\nna UFRN e enxadrista amador.', 810, 470)
 
   }
 }
