@@ -78,7 +78,7 @@ function inputHandler(event) {
     else if (event.type === INPUT_EVENT_TYPE.moveDone) {
         // Verifica se o lance é uma promoção e, caso seja, pergunta ao usuário pra qual peça ele vai promover
         if(chess.get(event.squareFrom).type == 'p' && (event.squareTo[1] == 8 || event.squareTo[1] == 1)){
-            promotion = prompt('promote to q, r, b or n?')
+            promotion = prompt('Caso deseje promover seu peão para:\nDama, escreva q\nTorre, escreva r\nBispo, escreva b\nou para cavalo, escreva n')
             move = {from: event.squareFrom, to: event.squareTo, promotion: promotion}
             var result = chess.move(move)
         }
