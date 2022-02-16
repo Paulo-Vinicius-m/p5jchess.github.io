@@ -12,7 +12,7 @@ var cor
 var config
 
 // Criação da representação do jogo
-const chess = new Chess('3qkbnr/P2ppppp/8/8/8/8/1PPPPPPP/RNBQKBNR w KQk - 0 1')
+const chess = new Chess()
 
 // Pega o valor da URL (ver o HTML) que diz com qual cor o usuário irá jogar
 if (get){
@@ -21,10 +21,6 @@ if (get){
 else{
     cor = 'white'
 }
-
-// Posições de mate em 3 para teste
-//chess.load('5r2/1p4n1/p3n3/2kp1pp1/8/P2B2P1/1P1N1PP1/2R2K2 b - - 1 30')
-//chess.load('2r2k2/1p1n1pp1/p2b2p1/8/2KP1PP1/P3N3/1P4N1/5R2 w - - 0 1')
 
 // Se a engine for jogar de brancas, fazer o lance antes de iniciar o tabuleiro
 if (cor[0] != chess.turn()) {
@@ -78,7 +74,7 @@ function inputHandler(event) {
     else if (event.type === INPUT_EVENT_TYPE.moveDone) {
         // Verifica se o lance é uma promoção e, caso seja, pergunta ao usuário pra qual peça ele vai promover
         if(chess.get(event.squareFrom).type == 'p' && (event.squareTo[1] == 8 || event.squareTo[1] == 1)){
-            promotion = prompt('Caso deseje promover seu peão para:\nDama, escreva q\nTorre, escreva r\nBispo, escreva b\nou para cavalo, escreva n')
+            promotion = prompt('Caso deseje promover seu peão para:\nDama, escreva: q\nTorre, escreva: r\nBispo, escreva: b\nou para cavalo, escreva: n')
             move = {from: event.squareFrom, to: event.squareTo, promotion: promotion}
             var result = chess.move(move)
         }
