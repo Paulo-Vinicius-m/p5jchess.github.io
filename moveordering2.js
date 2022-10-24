@@ -40,7 +40,7 @@ function moveordering2 (game){
 
     if (scores.length > 0){
 
-    scores.sort(function(a,b){return b.score - a.score})
+    scores.sort(function(a,b){return a.score - b.score})
 
     for (var i = 0; i < scores.length; i++){
         movelist.push(scores[i].move)
