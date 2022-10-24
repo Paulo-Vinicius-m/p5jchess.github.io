@@ -51,7 +51,7 @@ function search(game, depth, alpha, beta){
 
     // Gerar a lista de lances possíveis na ordem dos lances provavelmente bons para
     // para os provavelmente ruins com o objetivo de aumentar a eficiência da busca
-    const movelist = moveordering(game)
+    const movelist = moveordering2(game)
     
     // Verifica se a partida acabou
     if (game.game_over()){
