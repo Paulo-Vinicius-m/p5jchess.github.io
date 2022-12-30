@@ -18,7 +18,7 @@ function moveordering2 (game){
         }
         
         else if (movelist[i].flags.includes('c')) {
-            // Atribui pontuação à captuda de acordo com a força das peças envolvidas
+            // Atribui pontuação à captura de acordo com a força das peças envolvidas
             game.undo()
             scores.push({move: movelist[i], score: (piecevalue(game, movelist[i].to) - piecevalue(game, movelist[i].from))})
             movelist[i] = null
@@ -47,7 +47,7 @@ function moveordering2 (game){
         scores.sort(function(a,b){return b.score - a.score})
 
         for (var i = 0; i < scores.length; i++){
-            movelist.push(scores[i].move)
+            movesordered.push(scores[i].move)
         }
     }
 
