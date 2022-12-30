@@ -168,7 +168,7 @@ function mousePressed() {
      // Hitbox do botão jogar de brancas
      if(mouseX>603 && mouseX<673 && mouseY>300 && mouseY<370) {
        som.play()
-       window.location.href = 'https://Paulo-Vinicius-m.io/p5jchess.github.io/jogo_main.html?cor=white'
+       window.location.href = 'https://paulo-vinicius-m.github.io/p5jchess.github.io/jogo_main.html?cor=white'
      }
 
      // Hitbox do botão jogar de pretas
