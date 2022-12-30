@@ -1,6 +1,7 @@
 function moveordering2 (game){
 
-    // a intenção aqui é ordenar as capturas das provavelmente melhores para as provavelmente piores
+    // a intenção aqui é atribuir uma pontuação aos lances (estimativa pré-análise de quão bons eles são) e
+    // ordená-los do melhor ao pior
 
     var movelist = game.moves({verbose: true})
     var movesordered = []
@@ -10,24 +11,28 @@ function moveordering2 (game){
 
         game.fast_move(movelist[i])
         if (game.in_check()){
+            // Xeques vão para o todo da lista independentemente de pontuação
             movesordered.push(movelist[i])
             movelist[i] = null
             game.undo()
         }
         
         else if (movelist[i].flags.includes('c')) {
+            // Atribui pontuação à captuda de acordo com a força das peças envolvidas
             game.undo()
             scores.push({move: movelist[i], score: (piecevalue(game, movelist[i].to) - piecevalue(game, movelist[i].from))})
             movelist[i] = null
         }
         
         else if (movelist[i].flags.includes('e')){
+            // Aqui eu considero o en passant ligeiramente melhor que uma captura normal de peão
             game.undo()
-            scores.push({move: movelist[i], score: 100})
+            scores.push({move: movelist[i], score: 101})
             movelist[i] = null
         }
 
         else if (movelist[i].flags.includes('p')){
+            // Promoção de peão
             game.undo()
             scores.push({move: movelist[i], score: 800})
             movelist[i] = null
@@ -39,12 +44,11 @@ function moveordering2 (game){
     }
 
     if (scores.length > 0){
+        scores.sort(function(a,b){return b.score - a.score})
 
-    scores.sort(function(a,b){return a.score - b.score})
-
-    for (var i = 0; i < scores.length; i++){
-        movelist.push(scores[i].move)
-    }
+        for (var i = 0; i < scores.length; i++){
+            movelist.push(scores[i].move)
+        }
     }
 
     for (var i = 0; i < movelist.length; i++){
